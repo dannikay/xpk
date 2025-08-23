@@ -1101,14 +1101,15 @@ def run_gke_cluster_create_command(
       f' --node-locations={args.zone}'
       f' --cluster-version={gke_control_plane_version}'
       f' --machine-type={machine_type}'
-      # ' --enable-autoscaling'
       ' --total-min-nodes 1 --total-max-nodes 1000'
       f' --num-nodes {args.default_pool_cpu_num_nodes}'
       f' {args.custom_cluster_arguments}'
       f' {rapid_release_cmd}'
       ' --enable-dns-access'
-      # ' --autoscaling-profile=optimize-utilization'
   )
+
+  if not args.disable_autoscaling:
+    command += ' --enable-autoscaling --autoscaling-profile=optimize-utilization'
 
   enable_ip_alias = False
 
