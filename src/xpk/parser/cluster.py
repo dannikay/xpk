@@ -664,6 +664,13 @@ def add_shared_cluster_create_optional_arguments(parser: ArgumentParser):
       ),
   )
   parser.add_argument(
+      '--disable-autoscaling',
+      action='store_true',
+      help=(
+          'Disable cluster autoscaling.'
+      ),
+  )
+  parser.add_argument(
       '--force',
       action='store_true',
       help=(
